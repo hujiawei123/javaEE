@@ -1,0 +1,40 @@
+windows安装mysql
+https://www.cnblogs.com/qiaoconglovelife/p/5477832.html
+1,解压缩
+
+2,设置环境变量到解压缩后的bin目录
+在D:\learning\mysql\mysql-5.7.21-winx64目录下创建my.ini,以ansi方式保存
+
+
+[mysqld] 
+# 设置为自己MYSQL的安装目录 
+basedir=D:\learning\mysql\mysql-5.7.21-winx64
+# 设置为MYSQL的数据目录 
+datadir=D:\learning\mysql\mysql-5.7.21-winx64\data
+port=3306
+character_set_server=utf8
+sql_mode=NO_ENGINE_SUBSTITUTION,NO_AUTO_CREATE_USER
+#开启查询缓存
+explicit_defaults_for_timestamp=true
+#可以使用免密码登录,但是只能是以只读方式
+#skip-grant-tables
+
+[client]
+port=3306
+default-character-set=utf8
+[mysql]
+auto-rehash
+default-character-set=utf8
+
+3,初始化,记录显示的密码
+mysqld --initialize --user=mysql --console
+
+4,安装(如果没有生成data目录和data目录下的mysql目录,需要指定my.ini的位置,否则无法启动)
+mysqld install MySQL --defaults-file="d:\learning\mysql\mysql-5.7.21-winx64\my.ini"
+5,登录并修改密码
+mysql -u root -p
+set password = password('新密码');
+
+6,重启mysql命令
+net start mysql 
+net stop mysql 
